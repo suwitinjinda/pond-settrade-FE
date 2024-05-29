@@ -42,7 +42,8 @@ function Dashboard() {
         axios.get("http://localhost:5000/api/items")
             .then(response => {
                 console.log(response.data)
-                getDataTotal(response.data)
+                if ((response.data).length > 0)
+                    getDataTotal(response.data)
             })
             .catch(error => console.error(error));
     }, []);
@@ -161,6 +162,10 @@ function Dashboard() {
         if (getData !== "") {
             // console.log(getData[0].data)
             const symbolsArray = (getData[0].data).map(obj => obj.Symbol);
+
+            var sortedNames = symbolsArray.sort();
+            // console.log(sortedNames)
+
             const sortDate1 = getData.sort((a, b) => {
                 const dateA = new Date(a.date);
                 const dateB = new Date(b.date);
@@ -184,7 +189,7 @@ function Dashboard() {
                     <hr></hr>
                     <select value={company} onChange={handleSelectChange}>
                         <option value="">Select company...</option>
-                        {symbolsArray.map(data => {
+                        {sortedNames.map(data => {
                             return (
                                 <>
                                     <option value={data}>{data}</option>
@@ -207,6 +212,8 @@ function Dashboard() {
                         <option value="7">7</option>
                         <option value="15">15</option>
                         <option value="30">30</option>
+                        <option value="60">60</option>
+                        <option value="90">90</option>
                     </select>
                     {/* <p>Selected: {selectedOption}</p> */}
                 </div>

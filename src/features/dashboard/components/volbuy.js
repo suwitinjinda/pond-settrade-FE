@@ -15,16 +15,16 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 function Volbuy(d, date) {
   console.log(d)
   if (date === "") {
-    const sortedArray = (d[0].data).sort((a, b) => b.VolBuy - a.VolBuy);
-    const topValues = sortedArray.slice(0, 15);
+    const sortedArray = (d[0].data).sort((a, b) => b.ValueBuy - a.ValueBuy);
+    const topValues = sortedArray.slice(0, 20);
     console.log(topValues);
     const latestDate = d[0].date;
 
     const symbolsArray = topValues.map(obj => obj.Symbol);
     console.log(symbolsArray);
-    const volB = topValues.map(obj => obj.VolBuy);
+    const volB = topValues.map(obj => obj.ValueBuy);
     console.log(volB);
-    const volS = topValues.map(obj => obj.VolSell);
+    const volS = topValues.map(obj => obj.ValueSell);
     // console.log(volS);
 
     const options = {
@@ -42,12 +42,12 @@ function Volbuy(d, date) {
       labels,
       datasets: [
         {
-          label: 'Vol Buy',
+          label: 'Value Buy',
           data: volB,
           backgroundColor: 'rgba(53, 162, 235, 1)',
         },
         {
-          label: 'Vol Sell',
+          label: 'Value Sell',
           data: volS,
           backgroundColor: 'rgba(255, 99, 132, 1)',
         },
@@ -55,24 +55,24 @@ function Volbuy(d, date) {
     };
 
     return (
-      <TitleCard title={"Top 15 company volume Buy On " + latestDate}>
+      <TitleCard title={"Top 20 company Value Buy On " + latestDate}>
         <Bar options={options} data={data} />
       </TitleCard>
     )
   } else {
     let a = d.filter(data => data.date === date)
     console.log(a[0].data)
-    const sortedArray = (a[0].data).sort((a, b) => b.VolBuy - a.VolBuy);
+    const sortedArray = (a[0].data).sort((a, b) => b.ValueBuy - a.ValueBuy);
     console.log(sortedArray)
-    const topValues = sortedArray.slice(0, 15);
+    const topValues = sortedArray.slice(0, 20);
     console.log(topValues);
     const latestDate = date;
 
     const symbolsArray = (topValues).map(obj => obj.Symbol);
     console.log(symbolsArray);
-    const volB = (topValues).map(obj => obj.VolBuy);
+    const volB = (topValues).map(obj => obj.ValueBuy);
     console.log(volB);
-    const volS = (topValues).map(obj => obj.VolSell);
+    const volS = (topValues).map(obj => obj.ValueSell);
     // console.log(volS);
 
     const options = {
@@ -90,12 +90,12 @@ function Volbuy(d, date) {
       labels,
       datasets: [
         {
-          label: 'Vol Buy',
+          label: 'Value Buy',
           data: volB,
           backgroundColor: 'rgba(53, 162, 235, 1)',
         },
         {
-          label: 'Vol Sell',
+          label: 'Value Sell',
           data: volS,
           backgroundColor: 'rgba(255, 99, 132, 1)',
         },
@@ -103,7 +103,7 @@ function Volbuy(d, date) {
     };
 
     return (
-      <TitleCard title={"Top 15 company volume Buy On " + latestDate}>
+      <TitleCard title={"Top 20 company Value Buy On " + latestDate}>
         <Bar options={options} data={data} />
       </TitleCard>
 

@@ -26,7 +26,7 @@ function Volbuy(d, c, b) {
     console.log(data)
     let a = (data.data).filter(d => d.Symbol === c)
     console.log(a)
-    return a[0].VolBuy
+    return a[0].ValueNet
   })
   const symbFilterSell = d.map(data => {
     console.log(data)
@@ -48,6 +48,14 @@ function Volbuy(d, c, b) {
   // const volS = topValues.map(obj => obj.VolSell);
   // console.log(volS);
 
+  const colorShow = finalbuy.map(data => {
+    if (data > 0) {
+      return "rgba(53, 162, 235, 1)"
+    } else {
+      return "rgba(255, 99, 132, 1)"
+    }
+  })
+  console.log(colorShow)
   const options = {
     responsive: true,
     plugins: {
@@ -63,20 +71,15 @@ function Volbuy(d, c, b) {
     labels,
     datasets: [
       {
-        label: 'Vol Buy',
+        label: 'Value Net',
         data: finalbuy,
-        backgroundColor: 'rgba(53, 162, 235, 1)',
-      },
-      {
-        label: 'Vol Sell',
-        data: finalsell,
-        backgroundColor: 'rgba(255, 99, 132, 1)',
+        backgroundColor: colorShow,
       },
     ]
   };
 
   return (
-    <TitleCard title={"Volume Buy (" + c + ")"}>
+    <TitleCard title={"Value Net (" + c + ")"}>
       <Bar options={options} data={data} />
     </TitleCard>
 
